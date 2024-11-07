@@ -340,6 +340,22 @@ struct RecipesView: View {
                     }
                 }
                 
+                Button(action: {
+                    
+                    withAnimation(.spring()) {
+                        
+                        viewModel.isEvent = true
+                    }
+                    
+                }, label: {
+                    
+                    Text("Culinary event")
+                        .foregroundColor(.black)
+                        .font(.system(size: 14, weight: .regular))
+                        .frame(maxWidth: .infinity)
+                        .padding(9)
+                        .background(RoundedRectangle(cornerRadius: 25.0).fill(Color("red")))
+                })
             }
             .padding()
         }
@@ -465,6 +481,82 @@ struct RecipesView: View {
                 .offset(y: viewModel.isAddCategory ? 0 : UIScreen.main.bounds.height)
             }
         )
+        .overlay(
+            
+            ZStack {
+                
+                Color.black.opacity(viewModel.isEvent ? 0.5 : 0)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        
+                        withAnimation(.spring()) {
+                            
+                            viewModel.isEvent = false
+                        }
+                    }
+                
+                VStack {
+                    
+                    Image("event")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: .infinity)
+                    
+                    VStack {
+
+                        VStack {
+                            
+                            Button(action: {
+                                
+                                
+                                withAnimation(.spring()) {
+                                    
+                                    viewModel.isEventView = true
+                                    viewModel.isEvent = false
+                                    
+                                }
+                                
+                            }, label: {
+                                
+                                Text("Move Event")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 20, weight: .semibold))
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 40)
+                                
+                            })
+                            
+                            Button(action: {
+                                
+                                withAnimation(.spring()) {
+                                    
+                                    viewModel.isEvent = false
+                                }
+                                
+                            }, label: {
+                                
+                                Text("Cancel")
+                                    .foregroundColor(.red)
+                                    .font(.system(size: 18, weight: .regular))
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 40)
+                                
+                            })
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 20).fill(Color.white.opacity(0.7)))
+                    .padding(.horizontal, 50)
+                }
+                .padding()
+                .offset(y: viewModel.isEvent ? 0 : UIScreen.main.bounds.height)
+            }
+        )
+        .sheet(isPresented: $viewModel.isEventView, content: {
+            
+            EventView()
+        })
     }
 }
 

@@ -215,6 +215,8 @@ struct RecDetail: View {
                         .multilineTextAlignment(.center)
                     
                     Button(action: {
+                        
+                        viewModel.dishes -= 1
                
                         CoreDataStack.shared.deleteRec(withRecNameDish: viewModel.selectedRec?.recNameDish ?? "", completion: {
                             

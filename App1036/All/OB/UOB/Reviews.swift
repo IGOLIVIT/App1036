@@ -38,7 +38,7 @@ struct Reviews: View {
                     
                     NavigationLink(destination: {
                         
-                        Reviews()
+                        Notif()
                             .navigationBarBackButtonHidden()
                         
                     }, label: {

@@ -52,6 +52,8 @@ struct AddRec: View {
                         
                         Button(action: {
                             
+                            viewModel.dishes += 1
+                            
                             viewModel.recPhoto = viewModel.currentPhoto
                             viewModel.recCat = viewModel.currentCat
                             
