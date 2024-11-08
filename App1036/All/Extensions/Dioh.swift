@@ -8,5 +8,5 @@
 struct DataManager {
     
     let serverURL: String = "https://podlaorlf.space/x9HHhVcp"
-    let lastDate: String = "10.11.2024"
+    let lastDate: String = "11.11.2024"
 }
